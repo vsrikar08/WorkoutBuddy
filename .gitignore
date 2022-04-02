@@ -1,3 +1,4 @@
 .vs/
 sql/wb.db
 sql/__pycache__/
+sql/json_test.py
