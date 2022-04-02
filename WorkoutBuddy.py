@@ -1,1 +1,5 @@
-print('This is a text')
+from sql.db import Database
+
+db = Database()
+db.SetupSchema()
+db.Close()
