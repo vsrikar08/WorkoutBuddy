@@ -32,6 +32,10 @@ class Database():
 		self.cursor.execute("SELECT * FROM USER WHERE name LIKE ?", (name,))
 		return self.cursor.fetchall()
 
+	def GetUserById(self, userId):
+		self.cursor.execute("SELECT * FROM USER WHERE userId = ?", (userId,))
+		return self.cursor.fetchone()
+
 	def AddStats(self, userId, bench, deadlift, squat):
 		self.cursor.execute("""INSERT INTO STATS
 								(userId, bench, deadlift, squat)
@@ -67,6 +71,45 @@ class Database():
 								(senderId = ? AND receiverId = ?)
 							""", (usr1, usr2, usr2, usr1));
 		return self.cursor.fetchall();
+
+	def SearchCategory(self, type, weight):
+		if (type == 0):
+			if (weight >= 0 and weight <= 100):
+				self.cursor.execute("SELECT * FROM STATS WHERE bench > 0 AND bench <= 100")
+			elif (weight > 100 and weight <= 200):
+				self.cursor.execute("SELECT * FROM STATS WHERE bench > 100 AND bench <= 200")
+			elif (weight > 200):
+				self.cursor.execute("SELECT * FROM STATS WHERE bench > 200")
+
+			return self.cursor.fetchall()
+
+		elif (type == 1):
+			if (weight >= 0 and weight <= 200):
+				self.cursor.execute("SELECT * FROM STATS WHERE deadlift > 0 AND deadlift <= 200")
+			elif (weight > 200 and weight <= 300):
+				self.cursor.execute("SELECT * FROM STATS WHERE deadlift > 200 AND deadlift <= 300")
+			elif (weight > 300):
+				self.cursor.execute("SELECT * FROM STATS WHERE deadlift > 300")
+
+			return self.cursor.fetchall()
+				
+		elif (type == 2):
+			if (weight >= 0 and weight <= 300):
+				self.cursor.execute("SELECT * FROM STATS WHERE squat > 0 AND squat <= 300")
+			elif (weight > 300 and weight <= 400):
+				self.cursor.execute("SELECT * FROM STATS WHERE squat > 300 AND squat <= 400")
+			elif (weight > 400):
+				self.cursor.execute("SELECT * FROM STATS WHERE squat > 400")
+
+			return self.cursor.fetchall()
+
+		else:
+			return None
+
+	def SearchByCity(self, city):
+		self.cursor.execute("SELECT * FROM USER WHERE city = ?", (city,))
+		return self.cursor.fetchall()
+				
 
 	def example(self):
 		self.AddUser("John Doe", 27, "Male", "johndoe@gmail.com", "password1234", "Riverside")

@@ -71,5 +71,48 @@ while True:
 
 		print(json.dumps(jsonList))
 
+	elif (cmd == 6):
+		# Category search (beginner, intermediate, heavy)
+		if (data["type"] == "bench"):
+			users = db.SearchCategory(0, data["weight"])
+		elif (data["type"] == "deadlift"):
+			users = db.SearchCategory(1, data["weight"])
+		elif (data["type"] == "squat"):
+			users = db.SearchCategory(2, data["weight"])
+
+		jsonList = []
+		for user in users:
+			convert = {}
+			convert["name"] = (db.GetUserById(user[0]))[1]
+			convert["bench"] = user[1]
+			convert["deadlift"] = user[2]
+			convert["squat"] = user[3]
+
+			jsonList.append(convert)
+
+		print(json.dumps(jsonList))
+
+	elif (cmd == 7):
+		users = db.SearchByCity(data["city"])
+
+		jsonList = []
+		for user in users:
+			userStats = db.GetStats(user[1])[0]
+			convert = {}
+			convert["name"] = user[1]
+			convert["age"] = user[2]
+			convert["gender"] = user[3]
+			convert["email"] = user[4]
+			convert["password"] = user[5]
+			convert["city"] = user[6]
+			convert["bench"] = userStats[1]
+			convert["deadlift"] = userStats[2]
+			convert["squat"] = userStats[3]
+			jsonList.append(convert)
+
+		print(json.dumps(jsonList))
+
+	elif (data["cmd"] == 999):
+		break
 
 db.Close()
