@@ -26,5 +26,7 @@ CREATE TABLE MESSAGE (
 	message TEXT,
 	time INTEGER,
 	status TEXT,
-	PRIMARY KEY (senderId, receiverId)
+	PRIMARY KEY (senderId, receiverId),
+	FOREIGN KEY (senderId) REFERENCES USER(userId),
+	FOREIGN KEY (receiverId) REFERENCES USER(userId)
 );
