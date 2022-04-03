@@ -70,8 +70,8 @@ def main():
 						convert["sender"] = user2[0][1]
 						convert["receiever"] = user1[0][1]
 
-					convert["content"] = message[2]
-					convert["timestamp"] = message[3]
+					convert["content"] = message[3]
+					convert["timestamp"] = message[4]
 					jsonList.append(convert)
 
 				print(json.dumps(jsonList))

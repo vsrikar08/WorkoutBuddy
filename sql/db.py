@@ -78,6 +78,7 @@ class Database():
 								(senderId = ? AND receiverId = ?) 
 								OR 
 								(senderId = ? AND receiverId = ?)
+								ORDER BY time ASC
 							""", (usr1, usr2, usr2, usr1));
 		return self.cursor.fetchall();
 
