@@ -1,5 +1,4 @@
 import json
-import requests
 import sys
 from sql.db import Database
 
