@@ -1,7 +1,7 @@
-sender, receiver, time, content, status
-28, 2, 1032476020, "Hi! Want to work out tomorrow?", "Read"
-2, 28, 1415886938, "I'd love to! What time works best for you?", "Read"
-3, 8, 1355440764, "Want to work chest in a few?", "Unread"
-18, 27, 1444443287, "I'm gonna max out my deadlift this week!", "Read"
-27, 18, 1444443300, "Let's gooo! Best of luck.", "Read"
-18, 27, 1444443400, "I did it!!! 550!", "Read"
+sender,receiver,time,content,status
+28,2,1032476020,Hi! Want to work out tomorrow?,Read
+2,28,1415886938,I'd love to! What time works best for you?,Read
+3,8,1355440764,Want to work chest in a few?,Unread
+18,27,1444443287,I'm gonna max out my deadlift this week!,Read
+27,18,1444443300,Let's gooo! Best of luck.,Read
+18,27,1444443400,I did it!!! 550!,Read

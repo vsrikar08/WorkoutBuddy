@@ -116,7 +116,7 @@ class Database():
 			return None
 
 	def SearchByCity(self, city):
-		self.cursor.execute("SELECT * FROM USER WHERE city = ?", (city,))
+		self.cursor.execute("SELECT * FROM USER WHERE city LIKE ?", ('%'+city+'%',))
 		return self.cursor.fetchall()
 				
 
