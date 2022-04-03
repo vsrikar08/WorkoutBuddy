@@ -4,16 +4,16 @@ DROP TABLE IF EXISTS MESSAGE;
 
 CREATE TABLE USER (
 	userId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	firstName TEXT,
-	lastName TEXT,
-	dateOfBirth TEXT,
+	name TEXT,
+	age INTEGER,
+	gender TEXT,
 	email TEXT,
-	password TEXT
+	password TEXT,
+	city TEXT
 );
 
 CREATE TABLE STATS (
 	userId INTEGER PRIMARY KEY,
-	city TEXT,
 	bench REAL,
 	deadlift REAL,
 	squat REAL,
@@ -21,10 +21,10 @@ CREATE TABLE STATS (
 );
 
 CREATE TABLE MESSAGE (
-	usr1 INTEGER NOT NULL,
-	usr2 INTEGER NOT NULL,
+	senderId INTEGER NOT NULL,
+	receiverId INTEGER NOT NULL,
 	message TEXT,
 	time INTEGER,
 	status TEXT,
-	PRIMARY KEY (usr1, usr2)
+	PRIMARY KEY (senderId, receiverId)
 );
