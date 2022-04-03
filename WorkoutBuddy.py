@@ -6,6 +6,7 @@ from sql.db import Database
 db = Database()
 db.SetupSchema()
 db.exampleUsers()
+db.exampleMessages()
 
 while True:
 	data = json.loads(sys.stdin.readline())
@@ -13,7 +14,7 @@ while True:
 
 	if (cmd == 0):
 		# Add user and stats
-		db.AddUser(data["name"], data["age"], data["gender"], data["email"], data["password"], data["city"])
+		db.AddUser(data["name"], data["age"], data["sex"], data["email"], data["password"], data["city"])
 		userId = db.GetUser(data["name"])
 		db.AddStats(userId[0][0], data["bench"], data["deadlift"], data["squat"])
 
@@ -23,7 +24,7 @@ while True:
 		convert = {}
 		convert["name"] = foundUser[0][1]
 		convert["age"] = foundUser[0][2]
-		convert["gender"] = foundUser[0][3]
+		convert["sex"] = foundUser[0][3]
 		convert["email"] = foundUser[0][4]
 		convert["password"] = foundUser[0][5]
 		convert["city"] = foundUser[0][6]
@@ -101,7 +102,7 @@ while True:
 			convert = {}
 			convert["name"] = user[1]
 			convert["age"] = user[2]
-			convert["gender"] = user[3]
+			convert["sex"] = user[3]
 			convert["email"] = user[4]
 			convert["password"] = user[5]
 			convert["city"] = user[6]

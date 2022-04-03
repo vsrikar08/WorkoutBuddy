@@ -21,12 +21,12 @@ class Database():
 	def Close(self):
 		self.db.close()
 
-	def AddUser(self, name, age, gender, email, password, city):
+	def AddUser(self, name, age, sex, email, password, city):
 		self.cursor.execute("""INSERT INTO USER 
-								(name, age, gender, email, password, city)
+								(name, age, sex, email, password, city)
 								VALUES
 								(?, ?, ?, ?, ?, ?)
-							""", (name, age, gender, email, password, city))
+							""", (name, age, sex, email, password, city))
 		self.db.commit()
 
 	def GetUser(self, name):
@@ -63,6 +63,14 @@ class Database():
 								VALUES
 								(?, ?, ?, ?, ?)
 							""", (usr1, usr2, message, time.time(), "Unread"))
+		self.db.commit()
+
+	def SendMessage(self, usr1, usr2, message, timestamp, status):
+		self.cursor.execute("""INSERT INTO MESSAGE
+								(senderId, receiverId, message, time, status)
+								VALUES
+								(?, ?, ?, ?, ?)
+							""", (usr1, usr2, message, timestamp, status))
 		self.db.commit()
 
 	def GetMessages(self, usr1, usr2):
@@ -112,8 +120,8 @@ class Database():
 		return self.cursor.fetchall()
 				
 
-	def example(self):
-		with open (self.path + "\\example_set.csv", "r") as file:
+	def exampleUsers(self):
+		with open (self.path + "\\example_users.csv", "r") as file:
 			reader = csv.reader(file, delimiter = ",")
 
 			header = next(reader)
@@ -121,3 +129,11 @@ class Database():
 				self.AddUser(row[0], row[1], row[2], row[3], row[4], row[5])
 				user = self.GetUser(row[0])
 				self.AddStats(user[0][0], row[6], row[7], row[8])
+
+	def exampleMessages(self):
+		with open (self.path + "\\example_messages.csv", "r") as file:
+			reader = csv.reader(file, delimiter = ",")
+
+			header = next(reader)
+			for row in reader:
+				self.SendMessage(row[0], row[1], row[2], row[3], row[4])

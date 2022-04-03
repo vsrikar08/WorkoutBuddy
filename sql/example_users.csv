@@ -1,4 +1,4 @@
-name, age, gender, email, password, city, bench, deadlift, squat
+name, age, sex, email, password, city, bench, deadlift, squat
 "John Doe", 27, "Male", "johndoe@gmail.com", "password1234", "Riverside", 150, 200, 300
 "Jane Doe", 22, "Female", "janedoe@gmail.com", "orange12", "Riverside", 100, 125, 150
 "Ernesto Bradley", 23, "Male", "FirstAway@hotmail.com", "9968clockphrase49182son", "Toledo", 218, 234, 537

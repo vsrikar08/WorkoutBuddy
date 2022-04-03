@@ -6,7 +6,7 @@ CREATE TABLE USER (
 	userId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	name TEXT,
 	age INTEGER,
-	gender TEXT,
+	sex TEXT,
 	email TEXT,
 	password TEXT,
 	city TEXT
@@ -21,12 +21,12 @@ CREATE TABLE STATS (
 );
 
 CREATE TABLE MESSAGE (
+	messageId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	senderId INTEGER NOT NULL,
 	receiverId INTEGER NOT NULL,
 	message TEXT,
 	time INTEGER,
 	status TEXT,
-	PRIMARY KEY (senderId, receiverId),
 	FOREIGN KEY (senderId) REFERENCES USER(userId),
 	FOREIGN KEY (receiverId) REFERENCES USER(userId)
 );
