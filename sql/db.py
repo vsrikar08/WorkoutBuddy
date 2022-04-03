@@ -57,20 +57,20 @@ class Database():
 		self.cursor.execute("""UPDATE STATS SET bench = ?, deadlift = ?, squat = ? WHERE userId = ?""", (bench, deadlift, squat, user[0][0]))
 		self.db.commit()
 
-	def SendMessage(self, usr1, usr2, message):
+	def SendMessage(self, usr1, usr2, content):
 		self.cursor.execute("""INSERT INTO MESSAGE
-								(senderId, receiverId, message, time, status)
+								(senderId, receiverId, time, content, status)
 								VALUES
 								(?, ?, ?, ?, ?)
-							""", (usr1, usr2, message, time.time(), "Unread"))
+							""", (usr1, usr2, time.time(), content, "Unread"))
 		self.db.commit()
 
-	def SendMessage(self, usr1, usr2, message, timestamp, status):
+	def SendMessage(self, usr1, usr2, content, timestamp, status):
 		self.cursor.execute("""INSERT INTO MESSAGE
-								(senderId, receiverId, message, time, status)
+								(senderId, receiverId, time, content, status)
 								VALUES
 								(?, ?, ?, ?, ?)
-							""", (usr1, usr2, message, timestamp, status))
+							""", (usr1, usr2, timestamp, content, status))
 		self.db.commit()
 
 	def GetMessages(self, usr1, usr2):

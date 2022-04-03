@@ -52,8 +52,8 @@ while True:
 
 	elif (cmd == 5):
 		# GetMessages
-		user1 = db.GetUser(data["user1"])
-		user2 = db.GetUser(data["user2"])
+		user1 = db.GetUser(data["sender"])
+		user2 = db.GetUser(data["receiver"])
 		foundMessages = db.GetMessages(user1[0][0], user2[0][0])
 
 		jsonList = []
@@ -66,7 +66,7 @@ while True:
 				convert["sender"] = user2[0][1]
 				convert["receiever"] = user1[0][1]
 
-			convert["message"] = message[2]
+			convert["content"] = message[2]
 			convert["timestamp"] = message[3]
 			jsonList.append(convert)
 
