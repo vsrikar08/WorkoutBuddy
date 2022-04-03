@@ -5,7 +5,7 @@ from sql.db import Database
 
 db = Database()
 db.SetupSchema()
-db.example()
+db.exampleUsers()
 
 while True:
 	data = json.loads(sys.stdin.readline())

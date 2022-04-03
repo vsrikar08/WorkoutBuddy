@@ -1,3 +1,4 @@
+import csv
 import os
 import sqlite3
 import time
@@ -112,8 +113,11 @@ class Database():
 				
 
 	def example(self):
-		self.AddUser("John Doe", 27, "Male", "johndoe@gmail.com", "password1234", "Riverside")
-		self.AddStats(1, 150, 300, 200)
+		with open (self.path + "\\example_set.csv", "r") as file:
+			reader = csv.reader(file, delimiter = ",")
 
-		self.AddUser("Jane Doe", 22, "Female", "janedoe@gmail.com", "orange12", "Riverside")
-		self.AddStats(2, 100, 200, 150)
+			header = next(reader)
+			for row in reader:
+				self.AddUser(row[0], row[1], row[2], row[3], row[4], row[5])
+				user = self.GetUser(row[0])
+				self.AddStats(user[0][0], row[6], row[7], row[8])
