@@ -48,7 +48,7 @@ while True:
 		# SendMessage
 		sender = db.GetUser(data["sender"])
 		receiver = db.GetUser(data["receiver"])
-		db.SendMessage(sender[0][0], receiver[0][0], data["message"])
+		db.SendMessage(sender[0][0], receiver[0][0], data["content"])
 
 	elif (cmd == 5):
 		# GetMessages
@@ -94,6 +94,7 @@ while True:
 		print(json.dumps(jsonList))
 
 	elif (cmd == 7):
+		# Search for users by city
 		users = db.SearchByCity(data["city"])
 
 		jsonList = []
