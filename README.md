@@ -32,13 +32,14 @@ Example JSON commands that can be sent to the Python interface. Multiple command
 
 ### What is this?
 
-The backend database for http://workoutbuddy.tech/
+The backend database for http://workoutbuddy.tech/. 
 
 ### How to use this?
 
-Run WorkoutBuddy.py and type any of the commands above additionally after command 0 (Gary Oak is intentionally not in the database at the start).
+Run WorkoutBuddy.py and type any of the commands above additionally after command 0 (Gary Oak is intentionally not in the database at the start). After that depending on what the user wants as shown in the options menu above, you can choose what you want to do. 
 
 ### How was this built?
 
-The database is based on SQLite3 and the interface that connects to it is Python 3. All functionality uses native Python libraries.
-        
+The database is based on SQLite3 and the interface that connects to it is Python 3. All functionality uses native Python libraries. We also use js for the front end and connect it to the backend through requests. So when we enter in data we store that data in the sql database and depending on what the user wants we retreive stuff from the database to give to the front end. 
+
+
