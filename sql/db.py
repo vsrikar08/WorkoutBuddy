@@ -40,11 +40,17 @@ class Database():
 							""", (userId, bench, deadlift, squat))
 		self.db.commit()
 
-	def GetStats(self, first, last):
-		user = self.GetUser(first, last)
+	def GetStats(self, name):
+		user = self.GetUser(name)
 
 		self.cursor.execute("SELECT * FROM STATS WHERE userId = ?", (user[0][0],))
 		return self.cursor.fetchall()
+
+	def ChangeStats(self, name, bench, deadlift, squat):
+		user = self.GetUser(name)
+
+		self.cursor.execute("""UPDATE STATS SET bench = ?, deadlift = ?, squat = ? WHERE userId = ?""", (bench, deadlift, squat, user[0][0]))
+		self.db.commit()
 
 	def SendMessage(self, usr1, usr2, message):
 		self.cursor.execute("""INSERT INTO MESSAGE
