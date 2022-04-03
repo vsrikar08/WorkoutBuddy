@@ -30,7 +30,7 @@ class Database():
 		self.db.commit()
 
 	def GetUser(self, name):
-		self.cursor.execute("SELECT * FROM USER WHERE name LIKE ?", (name,))
+		self.cursor.execute("SELECT * FROM USER WHERE name LIKE ?", ('%'+name+'%',))
 		return self.cursor.fetchall()
 
 	def GetUserById(self, userId):
@@ -57,20 +57,20 @@ class Database():
 		self.cursor.execute("""UPDATE STATS SET bench = ?, deadlift = ?, squat = ? WHERE userId = ?""", (bench, deadlift, squat, user[0][0]))
 		self.db.commit()
 
-	def SendMessage(self, usr1, usr2, content):
+	def SendMessageNoTime(self, usr1, usr2, content):
 		self.cursor.execute("""INSERT INTO MESSAGE
-								(senderId, receiverId, time, content, status)
+								(senderId, receiverId, content, time, status)
 								VALUES
 								(?, ?, ?, ?, ?)
-							""", (usr1, usr2, time.time(), content, "Unread"))
+							""", (usr1, usr2, content, time.time(), "Unread"))
 		self.db.commit()
 
 	def SendMessage(self, usr1, usr2, content, timestamp, status):
 		self.cursor.execute("""INSERT INTO MESSAGE
-								(senderId, receiverId, time, content, status)
+								(senderId, receiverId, content, time, status)
 								VALUES
 								(?, ?, ?, ?, ?)
-							""", (usr1, usr2, timestamp, content, status))
+							""", (usr1, usr2, content, timestamp, status))
 		self.db.commit()
 
 	def GetMessages(self, usr1, usr2):
@@ -136,4 +136,4 @@ class Database():
 
 			header = next(reader)
 			for row in reader:
-				self.SendMessage(row[0], row[1], row[2], row[3], row[4])
+				self.SendMessage(row[0], row[1], row[3], row[2], row[4])
