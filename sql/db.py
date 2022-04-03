@@ -10,10 +10,10 @@ class Database():
 		self.cursor = None
 
 	def SetupSchema(self):
-		self.db = sqlite3.connect(self.path + "\\wb.db")
+		self.db = sqlite3.connect(self.path + "/wb.db")
 		self.cursor = self.db.cursor()
 
-		with open (self.path + "\\schema.sql", "r") as schema:
+		with open (self.path + "/schema.sql", "r") as schema:
 			self.cursor.executescript(schema.read())
 
 		self.db.commit()
@@ -121,7 +121,7 @@ class Database():
 				
 
 	def exampleUsers(self):
-		with open (self.path + "\\example_users.csv", "r") as file:
+		with open (self.path + "/example_users.csv", "r") as file:
 			reader = csv.reader(file, delimiter = ",")
 
 			header = next(reader)
@@ -131,7 +131,7 @@ class Database():
 				self.AddStats(user[0][0], row[6], row[7], row[8])
 
 	def exampleMessages(self):
-		with open (self.path + "\\example_messages.csv", "r") as file:
+		with open (self.path + "/example_messages.csv", "r") as file:
 			reader = csv.reader(file, delimiter = ",")
 
 			header = next(reader)
